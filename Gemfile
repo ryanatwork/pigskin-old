@@ -12,6 +12,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 2.0'
   gem 'sqlite3'
 end
