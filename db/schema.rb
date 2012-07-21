@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721205707) do
+ActiveRecord::Schema.define(:version => 20120721213416) do
 
   create_table "conferences", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(:version => 20120721205707) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "schedules", :force => true do |t|
+    t.integer  "nfl_week_id"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.date     "start_time"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "teams", :force => true do |t|
     t.string   "name"
     t.string   "code"
@@ -33,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20120721205707) do
     t.integer  "conference_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "weeks", :force => true do |t|
+    t.integer  "nfl_week"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
