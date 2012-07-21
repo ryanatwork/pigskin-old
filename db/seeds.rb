@@ -58,3 +58,12 @@ puts "Divisions created - #{Division.count}"
 end
 
 puts "Teams created #{Team.count}"
+
+Week.create(:nfl_week => 1, :start_date => Date.parse("2012-09-05"), :end_date => Date.parse("2012-09-10"))
+
+[{:week_id => 1, :away_team_id => Team.find_by_code("DAL").id, :home_team_id => Team.find_by_code("NYG").id},
+  {:week_id => 1, :away_team_id => Team.find_by_code("IND").id, :home_team_id => Team.find_by_code("CHI").id}
+].each do |attributes|
+  Schedule.create(attributes)
+end
+

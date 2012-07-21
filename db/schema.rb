@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721213416) do
+ActiveRecord::Schema.define(:version => 20120721214845) do
 
   create_table "conferences", :force => true do |t|
     t.string   "name"
@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(:version => 20120721213416) do
   end
 
   create_table "schedules", :force => true do |t|
-    t.integer  "nfl_week_id"
     t.integer  "home_team_id"
     t.integer  "away_team_id"
     t.date     "start_time"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "week_id"
   end
 
   create_table "teams", :force => true do |t|
