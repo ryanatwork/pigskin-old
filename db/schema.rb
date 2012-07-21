@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721214845) do
+ActiveRecord::Schema.define(:version => 20120721215440) do
 
   create_table "conferences", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(:version => 20120721214845) do
     t.integer  "week_id"
   end
 
+  create_table "seasons", :force => true do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "teams", :force => true do |t|
     t.string   "name"
     t.string   "code"
@@ -50,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120721214845) do
     t.date     "end_date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "season_id"
   end
 
 end
