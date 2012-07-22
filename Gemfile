@@ -12,6 +12,7 @@ gem 'bootstrap-sass', '~> 2.0.4.0'
 gem 'devise'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'factory_girl_rails'
