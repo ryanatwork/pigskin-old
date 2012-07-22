@@ -1,0 +1,25 @@
+%h1 Listing picks
+
+%table
+  %tr
+    %th User
+    %th Week
+    %th Team
+    %th Points
+    %th
+    %th
+    %th
+
+  - @picks.each do |pick|
+    %tr
+      %td= pick.user_id
+      %td= pick.week_id
+      %td= pick.team_id
+      %td= pick.points
+      %td= link_to 'Show', pick
+      %td= link_to 'Edit', edit_pick_path(pick)
+      %td= link_to 'Destroy', pick, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Pick', new_pick_path

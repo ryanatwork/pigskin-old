@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @pick.user_id
+%p
+  %b Week:
+  = @pick.week_id
+%p
+  %b Team:
+  = @pick.team_id
+%p
+  %b Points:
+  = @pick.points
+
+= link_to 'Edit', edit_pick_path(@pick)
+\|
+= link_to 'Back', picks_path
