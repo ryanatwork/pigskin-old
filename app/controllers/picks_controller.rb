@@ -24,7 +24,9 @@ class PicksController < ApplicationController
   # GET /picks/new
   # GET /picks/new.json
   def new
+    @teams = Week.first.schedules
     @pick = Pick.new
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,16 +42,21 @@ class PicksController < ApplicationController
   # POST /picks
   # POST /picks.json
   def create
-    @pick = Pick.new(params[:pick])
+    #@pick = Pick.new(params[:pick])
+
+    params[:team].each do |team|
+      Pick.create(:schedule_id => team[0],:team_id => team[1], :points => params[:points]["#{team[0]}"])
+    end
 
     respond_to do |format|
-      if @pick.save
-        format.html { redirect_to @pick, notice: 'Pick was successfully created.' }
-        format.json { render json: @pick, status: :created, location: @pick }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @pick.errors, status: :unprocessable_entity }
-      end
+      #if @pick.save
+        redirect_to new_pick_path
+        #format.html { redirect_to @pick, notice: 'Pick was successfully created.' }
+        #format.json { render json: @pick, status: :created, location: @pick }
+      #else
+      #  format.html { render action: "new" }
+      #  format.json { render json: @pick.errors, status: :unprocessable_entity }
+      #end
     end
   end
 
