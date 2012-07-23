@@ -24,8 +24,13 @@ class PicksController < ApplicationController
   # GET /picks/new
   # GET /picks/new.json
   def new
-    @teams = Week.first.schedules
-    @pick = Pick.new
+    if params[:id]
+      @teams = Week.find(params[:id]).schedules
+    else
+      schedule = Week.first.schedules(:order => "start_time")
+      @teams = schedule.group_by{ |team| team.start_time.strftime("%c")}
+    end
+      @pick = Pick.new
 
 
     respond_to do |format|
