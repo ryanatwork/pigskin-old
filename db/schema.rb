@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20120722013610) do
   create_table "schedules", :force => true do |t|
     t.integer  "home_team_id"
     t.integer  "away_team_id"
-    t.date     "start_time"
+    t.datetime "start_time"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "week_id"

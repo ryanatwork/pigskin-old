@@ -4,7 +4,7 @@ class CreateSchedules < ActiveRecord::Migration
       t.integer :nfl_week_id
       t.integer :home_team_id
       t.integer :away_team_id
-      t.date :start_time
+      t.datetime :start_time
 
       t.timestamps
     end
