@@ -6,36 +6,39 @@
         - @pick.errors.full_messages.each do |msg|
           %li= msg
 
-  - @teams.each do |gametime, games|
-    =gametime
-    %table.table.table-bordered
-      %thead
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Time
+        %th Away
+        %th Home
+        %th Points
+    %tbody
+    - @teams.each do |gametime, games|
+      %tr
+        %td{:colspan => 4}
+          %h4
+            =gametime
+      - games.each do |team|
         %tr
-          %th Time
-          %th Away
-          %th Home
-          %th Points
-      %tbody
-        - games.each do |team|
-          %tr
-            %td
-              = team.start_time.strftime("%H:%M")
-            %td
-              .contol-group
-                .controls
-                  %input{:id => "team_id_#{team.id}", :name => "team[#{team.id}]", :type => "radio", :value => team.away_team_id}
-                  = show_team(team.away_team_id)
-                  = image_tag "#{show_team(team.away_team_id).downcase}.png"
-            %td
-              .control-group
-                .controls
-                  %input{:id => "team_id_#{team.id}", :name => "team[#{team.id}]", :type => "radio", :value => team.home_team_id}
-                  = show_team(team.home_team_id)
-                  = image_tag "#{show_team(team.home_team_id).downcase}.png"
-            %td
-              .control-group
-                .controls
-                  %input.input-mini{:id => "points_id_#{team.id}", :name => "points[#{team.id}]", :type=> "text"}
+          %td
+            = team.start_time.strftime("%H:%M")
+          %td
+            .contol-group
+              .controls
+                %input{:id => "team_id_#{team.id}", :name => "team[#{team.id}]", :type => "radio", :value => team.away_team_id}
+                = image_tag "#{show_team(team.away_team_id).downcase}.png"
+                = show_team(team.away_team_id)
+          %td
+            .control-group
+              .controls
+                %input{:id => "team_id_#{team.id}", :name => "team[#{team.id}]", :type => "radio", :value => team.home_team_id}
+                = image_tag "#{show_team(team.home_team_id).downcase}.png"
+                = show_team(team.home_team_id)
+          %td
+            .control-group
+              .controls
+                %input.input-mini{:id => "points_id_#{team.id}", :name => "points[#{team.id}]", :type=> "text"}
   .actions
-    = f.submit
+    = f.submit 'Create Picks', :class => "btn btn-primary"
 

@@ -1,18 +1,19 @@
 %p#notice= notice
+.row
+  .span5
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Team
+          %th Points
+      %tbody
+      - @picks.each do |team|
+        %tr
+          %td
+            = image_tag "#{show_team(team.team_id).downcase}.png"
+            = show_team(team.team_id)
+          %td
+            = team.points
 
-%p
-  %b User:
-  = @pick.user_id
-%p
-  %b Week:
-  = @pick.week_id
-%p
-  %b Team:
-  = @pick.team_id
-%p
-  %b Points:
-  = @pick.points
-
-= link_to 'Edit', edit_pick_path(@pick)
 \|
 = link_to 'Back', picks_path

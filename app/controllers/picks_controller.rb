@@ -13,7 +13,7 @@ class PicksController < ApplicationController
   # GET /picks/1
   # GET /picks/1.json
   def show
-    @pick = Pick.find(params[:id])
+    @picks = current_user.picks
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,8 +27,7 @@ class PicksController < ApplicationController
     if params[:id]
       @teams = Week.find(params[:id]).schedules
     else
-      schedule = Week.first.schedules(:order => "start_time")
-      @teams = schedule.group_by{ |team| team.start_time.strftime("%c")}
+      @teams = Week.first.schedules.order("start_time").group_by{ |team| team.start_time.strftime("%c")}
     end
       @pick = Pick.new
 
@@ -50,12 +49,12 @@ class PicksController < ApplicationController
     #@pick = Pick.new(params[:pick])
 
     params[:team].each do |team|
-      Pick.create(:schedule_id => team[0],:team_id => team[1], :points => params[:points]["#{team[0]}"])
+      current_user.picks.create(:schedule_id => team[0],:team_id => team[1], :points => params[:points]["#{team[0]}"])
     end
 
     respond_to do |format|
       #if @pick.save
-        redirect_to new_pick_path
+        #redirect_to new_pick_path
         #format.html { redirect_to @pick, notice: 'Pick was successfully created.' }
         #format.json { render json: @pick, status: :created, location: @pick }
       #else
